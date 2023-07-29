@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- head tag -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMDB | HOME</title>
+    <!-- toster message styling -->
+    <link rel="stylesheet" href="./static_tosterMsg.css">
+
+    <!-- styling for IMDB Dashboard / home page -->
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/64db659394.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- toaster message ul -->
+    <ul class="notifications"></ul>
+    <!-- dashboard header -->
+    <header>
+        <!-- main header container -->
+        <div class="header_container">
+            <!-- IMDB logo -->
+            <div id="logo">
+                <a href="#">
+                    <img src="./assets/images/IMDB_Logo.png" alt="IMBd logo">
+                </a>
+            </div>
+            <!-- profile photo and watchlist button -->
+            <div id="Profile">
+                <div id="openModalButton">
+                    <p>Watchlist</p>
+                    <i style="margin-top: 18px;" class="fa-solid fa-list"></i>
+                </div>
+
+                <div id="user_profile">
+                    <img src="./assets/images/user_profile.png" alt="user profile">
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- search bar for searching movies -->
+    <div id="search_movies">
+        <input type="text" id="searchBar" onkeydown="searchMovies()" name="imbd_search" placeholder="Search IMDd">
+    </div>
+    <!-- filtered movies view -->
+    <div id="filteredMovies_body">
+        <div id="search_filterMovies"></div>
+    </div>
+
+    <!-- main movie details container -->
+    <main id="movieInfo">
+        <!-- movie Info body -->
+        <div id="movieInfoBody">
+            <!-- movie poster -->
+            <div class="movDetails">
+                <div id="Poster">
+                    <img id="MoviePoster" alt="Movie Poster">
+                </div>
+            </div>
+            <!-- main movie details -->
+            <div class="movieInfoHeader">
+                <div style="display: flex;">
+                    <!-- movie title -->
+                    <div class="movieInfoTitle"></div>
+                    <!-- movie Rating and country of origin -->
+                    <div class="movieInfoRatings">
+                        <div class="MovRating"></div>
+                        <div class="MovOrigin"></div>
+                    </div>
+                </div>
+                <!-- movie plot -->
+                <div style="font-size: 1.2rem;" id="AboutMov"></div>
+                <div class="movMakers">
+                    <div>
+                        <!-- actors -->
+                        <div class="actors"></div>
+                        <!-- directors -->
+                        <div class="director"></div>
+                        <!-- writers -->
+                        <div class="writer"></div>
+                        <!-- movie language -->
+                        <div class="language"></div>
+                    </div>
+                    <div style="margin-left: 100px;">
+                        <!-- Genre -->
+                        <div class="Genre"></div>
+                        <!-- Awards -->
+                        <div class="Awards"></div>
+                        <!-- Box Office Collection -->
+                        <div class="BoxOffice"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- like movie Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content" style="color: black;">
+
+            <div class="modal-header">
+                <!-- liked movie model title -->
+                <h5 class="modal-title" id="modalTitle">liked movies</h5>
+                <!-- close model button -->
+                <span class="close" id="closeModalButton">&times;</span>
+            </div>
+            <!-- unorder list for liked movies -->
+            <ul id="liked-movies-list"></ul>
+        </div>
+    </div>
+
+    <!-- toster message JS -->
+    <script src="./static_tosterMsg.js"></script>
+    <!-- home JS -->
+    <script src="./script.js"></script>
+</body>
+
+</html>

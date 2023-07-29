@@ -1,0 +1,310 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background-color: black;
+  color: white;
+  font-family: cursive;
+}
+
+/* header styling */
+
+header {
+  width: 100%;
+  height: 70px;
+  background: #121212;
+  position: fixed;
+  z-index: 100;
+}
+
+.header_container {
+  padding: 15px 60px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#logo img {
+  width: 70px;
+}
+
+#Profile {
+  display: flex;
+  width: 15vw;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#search_movies {
+  display: flex;
+  height: 20vh;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#search_movies input {
+  width: 42vw;
+  height: 30px;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  border-radius: 500px;
+  padding: 10 10px;
+  padding: 5px 20px;
+}
+
+#search_movies input::placeholder {
+  padding-left: 10px;
+}
+
+#search_movies input:hover {
+  border: 2px solid darkgoldenrod;
+}
+
+#filteredMovies_body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#search_filterMovies {
+  overflow-x: auto;
+}
+
+.showFilter {
+  position: absolute;
+  overflow-x: auto;
+  height: 51vh;
+  width: 45vw;
+  background-color: white;
+  border-radius: 20px;
+  margin-top: 0.1rem;
+}
+
+#openModalButton {
+  display: flex;
+  width: 8%;
+  justify-content: space-evenly;
+  /* padding-top: 0px; */
+  /* margin: 0; */
+  margin-top: -10px;
+  cursor: pointer;
+}
+
+#user_profile img {
+  width: 70px;
+  border-radius: 100px;
+}
+
+#movieList {
+  color: black;
+  list-style: none;
+  padding-left: 0px;
+}
+
+/* movie filtered list */
+
+.movieBody {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 20px;
+}
+
+.PosterTitle {
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.PosterTitle img {
+  width: 50px;
+}
+
+.MovieTitle,
+MovieYear {
+  font-size: 1rem;
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#MovYear span i {
+  font-size: 1.5rem;
+  width: 10%;
+  margin-left: 1rem;
+}
+
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.5, 1.5);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+#MovYear span i:hover {
+  animation: zoom-in-zoom-out 1s ease infinite;
+}
+
+/* Movie Info styling */
+
+#movieInfo {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+#movieInfoBody {
+  display: flex;
+  margin: 0 40px;
+}
+
+#MoviePoster {
+  width: 17vw;
+  height: 50vh;
+}
+
+.movieInfoHeader {
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+  width: 100%;
+  margin-top: -2em;
+}
+
+.movieInfoTitle {
+  width: 80%;
+}
+
+.movieInfoRatings {
+  display: flex;
+  /* margin-left: 100px; */
+  width: 40%;
+  justify-content: space-around;
+}
+
+.movieInfoTitle h2 {
+  margin-bottom: 0px;
+  font-size: xx-large;
+  font-weight: 100;
+}
+
+.movieInfoTitle #MovYear {
+  margin-top: 9px;
+  font-size: 1.1rem;
+}
+
+.MovRating i {
+  color: gold;
+}
+
+.MovOrigin i {
+  font-size: 1.2rem;
+  color: #0086ff;
+}
+
+.movMakers {
+  display: flex;
+  font-size: 1.1rem;
+}
+
+/* Modal styles */
+.modal {
+  display: none; /* Hide the modal by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  /* max-height: 10%; */
+  height: 80%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+}
+
+/* Close button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: black;
+}
+
+#modalTitle {
+  font-size: 1.5rem;
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+.modal-header {
+  display: flex;
+  /* color: red; */
+  justify-content: space-between;
+}
+
+#liked-movies-list {
+  padding-left: 0px;
+  height: 80%;
+  overflow-y: auto;
+  /* margin: 10px; */
+  padding: 10px;
+}
+
+#liked-movies-list > li {
+  list-style: none;
+  padding: 0 10px;
+}
+
+.liked-movies-li {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  border-bottom: 1px solid black;
+}
+
+.liked-movies-li img {
+  width: 70px;
+}
+
+.liked-movies-li i {
+  font-size: 1.8rem;
+  color: red;
+}
+
+.liked-movies-li i:hover {
+  animation: zoom-in-zoom-out 1s ease infinite;
+}
+
+.liked-movies-title {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 90%;
+}
+
+.liked-movies-title p {
+  margin-left: 30px;
+}
