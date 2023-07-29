@@ -36,7 +36,7 @@ const fetchMovieData = async (parameter, searchTerm) => {
   try {
     //url to fetch movie data
     const response = await fetch(
-      `http://www.omdbapi.com/?${parameter}=${searchTerm}&apikey=9494c740`
+      `https://www.omdbapi.com/?${parameter}=${searchTerm}&apikey=9494c740`
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");
