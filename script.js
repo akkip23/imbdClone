@@ -19,6 +19,17 @@ const openModalButton = document.getElementById("openModalButton");
 const closeModalButton = document.getElementById("closeModalButton");
 // like movie ul id
 const likedMovieUL = document.getElementById("liked-movies-list");
+//add empty array to localstorage if not exist
+if (localStorage.getItem("likedMovies") === null) {
+  localStorage.setItem("likedMovies", JSON.stringify([]));
+}
+//using object destructuring to handle error if any for dislike movie handler
+const MovDetail = {
+  activeMovDetail: false,
+  activeMovID: "",
+};
+
+let { activeMovDetail, activeMovID } = MovDetail;
 
 //fetch movie data from IMDB API
 const fetchMovieData = async (parameter, searchTerm) => {
@@ -131,12 +142,12 @@ const onDataClickListner = async (id) => {
   //get the selected movie data and show details
   await fetchMovieData("i", Movieid)
     .then((data) => {
-      // console.log(Movieid);
-
+      //   console.log(Movieid);
+      //   debugger;
       let detailedResult = data;
-      // console.log("data for movie fetched by id", detailedResult);
+      //   console.log("data for movie fetched by id", detailedResult);
       const ulElement = document.getElementById("movieList");
-
+      //   debugger;
       if (ulElement) {
         moviesListBody.classList.remove("showFilter");
         ulElement.remove();
@@ -193,10 +204,19 @@ const onDataClickListner = async (id) => {
       isLiked(Movieid);
       movieInfo.style.display = "block";
       modal.style.display = "none";
+      activeMovDetail = true;
+      activeMovID = Movieid;
     })
     .catch((err) => {
-      console.error("Error fetching data:", err);
-      createToast("error", `Error finding movie please try again later`);
+      //   console.error("Error fetching data:", err);
+      movieInfo.style.display = "none";
+      activeMovDetail = false;
+      activeMovID = "";
+      createToast(
+        "error",
+        `Error finding movie please try again later or Search for another movie`
+      );
+      return;
     });
 };
 
@@ -217,12 +237,13 @@ function openModal() {
   likedMovieUL.innerHTML = "";
   let likedMovieData = JSON.parse(localStorage.getItem("likedMovies"));
   // console.log(likedMovieData);
-  likedMovieData.forEach(function (movie, index) {
-    // Create a new <li> element
-    const li = document.createElement("li");
-    li.setAttribute("id", movie.movieID);
-    // Set the content of the <li> (e.g., the movie title)
-    li.innerHTML = `<div class="liked-movies-li">
+  if (likedMovieData != null) {
+    likedMovieData.forEach(function (movie, index) {
+      // Create a new <li> element
+      const li = document.createElement("li");
+      li.setAttribute("id", movie.movieID);
+      // Set the content of the <li> (e.g., the movie title)
+      li.innerHTML = `<div class="liked-movies-li">
     <div onclick="onDataClickListner(this)" id="${movie.movieID}" class="liked-movies-title">
       <img src="${movie.poster}" alt="${movie.title} poster">
       <p>${movie.title}</p>
@@ -230,9 +251,10 @@ function openModal() {
       <i onclick="strikeLikedBtnHandler(this)" data-liIndex="${index}" id="${movie.movieID}" class="fa-solid fa-heart"></i>
     </div>`;
 
-    // Append the <li> to the <ul>
-    likedMovieUL.appendChild(li);
-  });
+      // Append the <li> to the <ul>
+      likedMovieUL.appendChild(li);
+    });
+  }
   modal.style.display = "block";
 }
 
@@ -320,5 +342,7 @@ function strikeLikedBtnHandler(id) {
     likedMovieUL.removeChild(likedMovieUL.children[likeMovieIndex]);
   }
   createToast("success", `${movieTitle.title} Dislike successfully`);
-  isLiked(movieID);
+  if (activeMovDetail === true && activeMovID === movieID) {
+    isLiked(movieID);
+  }
 }
