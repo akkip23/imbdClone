@@ -1,4 +1,4 @@
-# Use an official Nginx runtime as a base image
+# Use an official Nginx runtime as a base image for imdb-clone
 FROM nginx:alpine
 
 # Set the working directory inside the container
