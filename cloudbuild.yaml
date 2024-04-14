@@ -2,15 +2,15 @@ steps:
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
     args: [
-            'build',
-            '-t',
-            'us-central1-docker.pkg.dev/pub-demo-cb-ar/python-repo/my-app:${SHORT_SHA}',
-            '-t',
-            'us-central1-docker.pkg.dev/pub-demo-cb-ar/python-repo/my-app:latest',
-            '--cache-from',
-            'us-central1-docker.pkg.dev/pub-demo-cb-ar/python-repo/my-app:latest',
-            '.'
-          ]
+      'build',
+      '-t',
+      'us-central1-docker.pkg.dev/pub-demo-cb-ar/python-repo/my-app:${SHORT_SHA}',
+      '-t',
+      'us-central1-docker.pkg.dev/pub-demo-cb-ar/python-repo/my-app:latest',
+      '--cache-from',
+      'us-central1-docker.pkg.dev/pub-demo-cb-ar/python-repo/my-app:latest',
+      '.'
+    ]
 
   # Docker push to Google Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
@@ -21,10 +21,9 @@ images:
   - us-central1-docker.pkg.dev/pub-demo-cb-ar/python-repo/my-app:${SHORT_SHA}
   - us-central1-docker.pkg.dev/pub-demo-cb-ar/python-repo/my-app:latest
 
-  options:
+options:
   logging:
     # Specify the Cloud Storage bucket where build logs will be stored
     logsBucket: 'gs://bucket-from-tf-using-gcp-terraform'
   # Set the default behavior for logging buckets
   defaultLogsBucketBehavior: 'REGIONAL_USER_OWNED_BUCKET'
-
