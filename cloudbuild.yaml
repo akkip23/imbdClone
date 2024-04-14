@@ -21,3 +21,10 @@ images:
   - us-central1-docker.pkg.dev/pub-demo-cb-ar/python-repo/my-app:${SHORT_SHA}
   - us-central1-docker.pkg.dev/pub-demo-cb-ar/python-repo/my-app:latest
 
+  options:
+  logging:
+    # Specify the Cloud Storage bucket where build logs will be stored
+    logsBucket: 'gs://bucket-from-tf-using-gcp-terraform'
+  # Set the default behavior for logging buckets
+  defaultLogsBucketBehavior: 'REGIONAL_USER_OWNED_BUCKET'
+
